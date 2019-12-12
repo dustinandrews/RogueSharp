@@ -29,7 +29,7 @@ namespace RogueSharp.MapCreation
       /// <param name="totalIterations">Recommend int between 2 and 5. Number of times to execute the cellular automata algorithm.</param>
       /// <param name="cutoffOfBigAreaFill">Recommend int less than 4. The iteration number to switch from the large area fill algorithm to a nearest neighbor algorithm</param>
       /// <param name="random">A class implementing IRandom that will be used to generate pseudo-random numbers necessary to create the Map</param>
-      public CaveMapCreationStrategy( int width, int height, int fillProbability, int totalIterations, int cutoffOfBigAreaFill, IRandom random )
+      public CaveMapCreationStrategy( int width, int height, int fillProbability, int totalIterations, int cutoffOfBigAreaFill, IRandom random, bool originalMethod = true )
       {
          _width = width;
          _height = height;
@@ -157,27 +157,14 @@ namespace RogueSharp.MapCreation
          _map = updatedMap;
       }
 
-      private bool IsBorderCell( ICell cell )
+      private bool IsBorderCell(ICell cell)
       {
-         return cell.X == 0 || cell.X == _map.Width - 1
-                || cell.Y == 0 || cell.Y == _map.Height - 1;
+         return CellularAutomata.IsBorderCell(_map, cell);
       }
 
-      private int CountWallsNear( ICell cell, int distance )
+      private int CountWallsNear(ICell cell, int distance)
       {
-         int count = 0;
-         foreach ( ICell nearbyCell in _map.GetCellsInSquare( cell.X, cell.Y, distance ) )
-         {
-            if ( nearbyCell.X == cell.X && nearbyCell.Y == cell.Y )
-            {
-               continue;
-            }
-            if ( !nearbyCell.IsWalkable )
-            {
-               count++;
-            }
-         }
-         return count;
+         return CellularAutomata.CountWallsNear(_map, cell, distance);
       }
 
       private void ConnectCaves()

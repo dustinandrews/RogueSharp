@@ -8,9 +8,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RogueSharp.MapCreation;
 using RogueSharp.Random;
 
+
 namespace RogueSharp.Test
 {
-   [TestClass]
+    [TestClass]
    public class MapTest
    {
       [TestMethod]
@@ -832,7 +833,7 @@ namespace RogueSharp.Test
          Assert.AreEqual( RemoveWhiteSpace( expectedFovMap ), RemoveWhiteSpace( map.ToString( true ) ) );
       }
 
-      private static string RemoveWhiteSpace( string source )
+      public static string RemoveWhiteSpace( string source )
       {
          return Regex.Replace( source, @"\s+", string.Empty );
       }
