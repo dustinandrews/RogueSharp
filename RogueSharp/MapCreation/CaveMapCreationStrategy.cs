@@ -152,36 +152,5 @@ namespace RogueSharp.MapCreation
       {
          return MapHelper.CountWallsNear(_map, cell, distance);
       }
-
-      // private void ConnectCaves()
-      // {
-      //    var floodFillAnalyzer = new FloodFillAnalyzer( _map );
-      //    List<MapSection> mapSections = floodFillAnalyzer.GetMapSections();
-      //    var unionFind = new UnionFind( mapSections.Count );
-      //    while ( unionFind.Count > 1 )
-      //    {
-      //       for ( int i = 0; i < mapSections.Count; i++ )
-      //       {
-      //          int closestMapSectionIndex = MapHelper.FindNearestMapSection( mapSections, i, unionFind );
-      //          MapSection closestMapSection = mapSections[closestMapSectionIndex];
-      //          IEnumerable<ICell> tunnelCells = _map.GetCellsAlongLine( mapSections[i].Bounds.Center.X, mapSections[i].Bounds.Center.Y,
-      //             closestMapSection.Bounds.Center.X, closestMapSection.Bounds.Center.Y );
-      //          ICell previousCell = null;
-      //          foreach ( ICell cell in tunnelCells )
-      //          {
-      //             _map.SetCellProperties( cell.X, cell.Y, true, true );
-      //             if ( previousCell != null )
-      //             {
-      //                if ( cell.X != previousCell.X || cell.Y != previousCell.Y )
-      //                {
-      //                   _map.SetCellProperties( cell.X + 1, cell.Y, true, true );
-      //                }
-      //             }
-      //             previousCell = cell;
-      //          }
-      //          unionFind.Union( i, closestMapSectionIndex );
-      //       }
-      //    }
-      // }
    }
 }

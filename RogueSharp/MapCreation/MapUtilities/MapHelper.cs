@@ -44,12 +44,11 @@ namespace RogueSharp.MapCreation
             return updatedMap;
          }
 
-
-      /// <summary>
-      /// Returns true for cells along the edge
-      /// </summary>
-      /// <typeparam name="T"></typeparam>
-      public static bool IsBorderCell<T>( T map, ICell cell ) where T : class, IMap, new()
+        /// <summary>
+        /// Returns true for cells along the edge
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        public static bool IsBorderCell<T>( T map, ICell cell ) where T : class, IMap, new()
       {
          return cell.X == 0 || cell.X == map.Width - 1
                 || cell.Y == 0 || cell.Y == map.Height - 1;

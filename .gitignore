@@ -4,6 +4,7 @@
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
+.vscode/
 
 #Visual Studio files
 *.[Oo]bj
