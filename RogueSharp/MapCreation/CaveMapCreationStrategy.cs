@@ -10,7 +10,7 @@ namespace RogueSharp.MapCreation
     /// </summary>
     /// <seealso href="http://www.roguebasin.com/index.php?title=Cellular_Automata_Method_for_Generating_Random_Cave-Like_Levels">Cellular Automata Method from RogueBasin</seealso>
     /// <typeparam name="T">The type of IMap that will be created</typeparam>
-    public partial class CaveMapCreationStrategy<T> : IMapCreationStrategy<T> where T : class, IMap, new()
+    public class CaveMapCreationStrategy<T> : IMapCreationStrategy<T> where T : class, IMap, new()
    {
       private readonly int _width;
       private readonly int _height;
