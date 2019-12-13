@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using RogueSharp.MapCreation;
 
 namespace RogueSharp.Test
 {
@@ -23,7 +23,7 @@ namespace RogueSharp.Test
          var neighbors = new List<int>();
          foreach(var cell in map.GetAllCells())
          {
-            neighbors.Add(CellularAutomata.CountWallsNear(map, cell, 1));
+            neighbors.Add(MapHelper.CountWallsNear(map, cell, 1));
          }
          var expected = new List<int>(){0,0,0,0,0,
                                        1,2,3,2,1,
@@ -50,7 +50,7 @@ namespace RogueSharp.Test
          Trace.WriteLine( map );
          Trace.WriteLine("");
 
-         var actualMap = CellularAutomata.CellularAutomataRunGeneration(map, born, survive);
+         var actualMap = MapHelper.RunGeneration(map, born, survive);
          var expectedMapRepresentation = @".....
                           ..#..
                           ..#..

@@ -77,6 +77,43 @@ namespace RogueSharp.Test
       }
 
       [TestMethod]
+      public void Create_MapCreatedWithCave2CreationStrategy_ExpectedMap()
+      {
+         int expectedWidth = 50;
+         int expectedHeight = 20;
+         IRandom random = new DotNetRandom( 5 );
+         IMapCreationStrategy<CaveMap> mapCreationStrategy = new CaveMap2CreationStrategy<CaveMap>( expectedWidth, expectedHeight, 60, random );
+         string expectedMapRepresentation = @"##################################################
+                                              ##################################################
+                                              #########################......############..#####
+                                              #######################..........########.....####
+                                              ###############...............................####
+                                              ##############...............................#####
+                                              ###..#########...............................#####
+                                              ##.....#######...............................#####
+                                              ##.....#######...........##..................#####
+                                              ##.......####..........######.................####
+                                              ##.....................######.................####
+                                              ###....................########....####......#####
+                                              ###....................########....####....#######
+                                              ####.....................######..#################
+                                              ####.....................####....#################
+                                              #####...........................##################
+                                              #######.........................##################
+                                              #########..............####....###################
+                                              ##################################################
+                                              ##################################################";
+
+         CaveMap actualMap = Map.Create( mapCreationStrategy );
+         Trace.Write( actualMap );
+
+         Assert.AreEqual( expectedWidth, actualMap.Width );
+         Assert.AreEqual( expectedHeight, actualMap.Height );
+         Assert.AreEqual( RemoveWhiteSpace( expectedMapRepresentation ), RemoveWhiteSpace( actualMap.ToString() ) );
+
+      }
+
+      [TestMethod]
       public void Create_DerivedMapCreatedWithCaveCreationStrategy_ExpectedMap()
       {
          int expectedWidth = 50;
