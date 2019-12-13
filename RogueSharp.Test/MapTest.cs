@@ -102,6 +102,31 @@ Assert.AreEqual( expectedWidth, actualMap.Width );
       }
 
       [TestMethod]
+      public void Create_DepthFirstMaze()
+      {
+         IRandom random = new DotNetRandom( 0 );
+         int expectedWidth = 7;
+         int expectedHeight = 11;
+         IMapCreationStrategy<CaveMap> mapCreationStrategy = new DepthFirstMazeMapCreationStrategy<CaveMap>(expectedWidth, expectedHeight, random);
+         IMap actualMap = mapCreationStrategy.CreateMap();
+         Trace.Write( actualMap );
+         string expectedMapRepresentation = @"#######
+                                              #.#...#
+                                              #.#.###
+                                              #.#...#
+                                              #.###.#
+                                              #.#...#
+                                              #.#.#.#
+                                              #.#.#.#
+                                              #.#.#.#
+                                              #...#.#
+                                              #######";
+         Assert.AreEqual( expectedWidth, actualMap.Width );
+         Assert.AreEqual( expectedHeight, actualMap.Height );
+         Assert.AreEqual( RemoveWhiteSpace( expectedMapRepresentation ), RemoveWhiteSpace( actualMap.ToString() ) );
+      }
+
+      [TestMethod]
       public void Create_MapCreatedWithCave2CreationStrategy_ExpectedMap()
       {
          int expectedWidth = 50;

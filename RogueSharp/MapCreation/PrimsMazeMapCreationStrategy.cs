@@ -48,13 +48,13 @@ namespace RogueSharp.MapCreation
                 var currentCell = Map.GetCell(currX, currY);
 
                 // Get 4 neighbors with a one cell buffer for the walls.
-                var possibleNodes = GetSkipNeighbors(currentCell);
+                var unvisited = GetSkipNeighbors(currentCell);
 
-                if (possibleNodes.Length > 0)
+                if (unvisited.Length > 0)
                 {
                     // Randomly select a destination, add it to the open list and clear the path.
-                    var node = Random.Next(possibleNodes.Length - 1);
-                    var nextCell = possibleNodes[node];
+                    var node = Random.Next(unvisited.Length - 1);
+                    var nextCell = unvisited[node];
                     var link = GetLinkCell(currentCell, nextCell);
                     Map.SetCellProperties(link.X, link.Y, true, true);
                     Map.SetCellProperties(nextCell.X, nextCell.Y, true, false);
